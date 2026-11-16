@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SIGN BRIDGE AI — Bridging Communication Through Artificial Intelligence</title>
-  <meta name="description" content="SIGN BRIDGE AI frontend dashboard for text, voice and facial emotion analysis. Connects to a Python backend." />
+  <meta name="description" content="SIGN BRIDGE AI dashboard for text, voice, facial emotion, and sign language recognition." />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <!-- Fonts load from Google when online; system fonts are used as fallback offline. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,6 +40,10 @@
         <a href="#face" class="nav-link" data-section="face">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-3.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM12 18a6 6 0 0 1-5.2-3h10.4A6 6 0 0 1 12 18z"/></svg>
           <span>Facial Emotion</span>
+        </a>
+        <a href="#sign" class="nav-link" data-section="sign">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 11.5V5.25a1.25 1.25 0 0 1 2.5 0V10h.75V3.75a1.25 1.25 0 0 1 2.5 0V10H14V5.25a1.25 1.25 0 0 1 2.5 0V11h.75V8.25a1.25 1.25 0 0 1 2.5 0v7.5A6.25 6.25 0 0 1 13.5 22h-2a6 6 0 0 1-5.2-3l-3.1-4.4a1.35 1.35 0 0 1 2.1-1.7l2.2 2.3z"/></svg>
+          <span>Sign Language</span>
         </a>
         <a href="#settings" class="nav-link" data-section="settings">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.4-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3.3h-4l-.4 2.7a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.4L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.4 2.5-1c.5.4 1.1.7 1.7 1l.4 2.7h4l.4-2.7c.6-.3 1.2-.6 1.7-1l2.5 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg>
@@ -312,7 +316,109 @@
           </div>
         </section>
 
-        <!-- ===== 5. SETTINGS ===== -->
+        <!-- ===== SIGN LANGUAGE RECOGNITION ===== -->
+        <section class="section" id="section-sign" data-title="Sign Language Recognition" data-eyebrow="Accessibility">
+          <div class="sign-intro">
+            <p>Bridging communication barriers through AI.</p>
+            <span>Use a live camera or choose an image or video to get started.</span>
+          </div>
+
+          <div class="grid sign-input-grid">
+            <div class="card sign-media-card sign-camera-card">
+              <div class="card-head">
+                <h3>Live Camera</h3>
+                <span class="badge">On device</span>
+              </div>
+              <div class="viewport sign-viewport">
+                <video id="signCameraVideo" autoplay playsinline muted></video>
+                <div class="viewport-empty" id="signCameraEmpty">
+                  <p>Camera is off</p>
+                  <span>Your camera is only used for a live preview in this browser.</span>
+                </div>
+              </div>
+              <div class="btn-row">
+                <button class="btn btn-ghost" id="signCameraStart" type="button">Start camera</button>
+                <button class="btn btn-ghost" id="signCameraStop" type="button" disabled>Stop camera</button>
+              </div>
+            </div>
+
+            <div class="sign-upload-stack">
+              <div class="card sign-media-card">
+                <div class="card-head">
+                  <h3>Upload Image</h3>
+                  <span class="badge">JPG · PNG · WEBP</span>
+                </div>
+                <label class="dropzone sign-dropzone" id="signImageDrop">
+                  <input type="file" id="signImageFile" accept="image/jpeg,image/png,image/webp" hidden />
+                  <strong>Choose an image</strong>
+                  <span>Maximum file size: 20 MB</span>
+                </label>
+                <div class="media-preview sign-media-preview" id="signImagePreviewWrap" hidden>
+                  <img id="signImagePreview" alt="Preview of selected sign language image" />
+                  <p class="muted-small" id="signImageMeta"></p>
+                </div>
+              </div>
+
+              <div class="card sign-media-card">
+                <div class="card-head">
+                  <h3>Upload Video</h3>
+                  <span class="badge">MP4 · WEBM · OGG</span>
+                </div>
+                <label class="dropzone sign-dropzone" id="signVideoDrop">
+                  <input type="file" id="signVideoFile" accept="video/mp4,video/webm,video/ogg" hidden />
+                  <strong>Choose a video</strong>
+                  <span>Maximum file size: 100 MB</span>
+                </label>
+                <div class="media-preview sign-media-preview" id="signVideoPreviewWrap" hidden>
+                  <video id="signVideoPreview" controls playsinline></video>
+                  <p class="muted-small" id="signVideoMeta"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card sign-actions-card">
+            <div>
+              <h3>Ready to recognize?</h3>
+              <p class="muted-small">Recognition results are unavailable until an AI model is connected.</p>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" id="signRecognize" type="button">Recognize Sign</button>
+              <button class="btn btn-ghost" id="signClear" type="button">Clear</button>
+            </div>
+          </div>
+
+          <div class="card sign-results-card" aria-labelledby="signResultsTitle">
+            <div class="card-head">
+              <div>
+                <h3 id="signResultsTitle">Results</h3>
+                <p class="muted-small">Predictions will appear here after model integration.</p>
+              </div>
+              <span class="badge">AI model not connected</span>
+            </div>
+            <p class="sign-result-status" id="signResultStatus" role="status" aria-live="polite">AI model not connected</p>
+            <div class="grid sign-result-grid">
+              <div class="sign-result-item">
+                <span class="stat-label">Recognized Gesture</span>
+                <strong id="signGestureResult">—</strong>
+              </div>
+              <div class="sign-result-item">
+                <span class="stat-label">Translated Text</span>
+                <strong id="signTranslationResult">—</strong>
+              </div>
+              <div class="sign-result-item">
+                <span class="stat-label">Confidence Score</span>
+                <strong id="signConfidenceResult">—</strong>
+              </div>
+            </div>
+            <div class="supported-signs">
+              <h4>Supported Signs</h4>
+              <p class="muted-small">The supported sign list will be shown when an AI model is connected.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== SETTINGS ===== -->
         <section class="section" id="section-settings" data-title="Settings" data-eyebrow="Configuration">
           <div class="grid two-col">
             <div class="card">

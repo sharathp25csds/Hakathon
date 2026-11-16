@@ -4,15 +4,16 @@
    Sections:
      1. Config & settings storage
      2. Helpers (DOM, toasts, activity log)
-     3. Navigation (5 sections, hash based)
+     3. Navigation (6 sections, hash based)
      4. Backend API layer  <-- connect the Python backend here
      5. Result rendering   <-- customize how AI output is drawn
      6. Dashboard
      7. Text emotion module
      8. Voice emotion module
      9. Facial emotion module
-    10. Settings module
-    11. Init
+    10. Sign language recognition module
+    11. Settings module
+    12. Init
    No AI results are generated in the browser. Every result slot
    stays empty until a real backend responds.
    ========================================================= */
@@ -96,7 +97,7 @@
   }
 
   /* ---------- 3. Navigation ---------- */
-  var SECTIONS = ["dashboard", "text", "voice", "face", "settings"];
+  var SECTIONS = ["dashboard", "text", "voice", "face", "sign", "settings"];
 
   function showSection(name) {
     if (SECTIONS.indexOf(name) === -1) name = "dashboard";
@@ -116,8 +117,9 @@
     closeSidebar();
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    // Release the camera when leaving the face section.
+    // Release camera streams when leaving their section.
     if (name !== "face") stopCamera();
+    if (name !== "sign") stopSignCamera();
   }
 
   function currentHash() { return (location.hash || "#dashboard").slice(1); }
@@ -593,6 +595,214 @@
     });
   }
 
+  /* ---------- 10. Sign language recognition ---------- */
+  var signMedia = { stream: null, source: "", imageUrl: null, videoUrl: null, recognitionTimer: null, cameraRequest: 0 };
+  var SIGN_IMAGE_MAX = 20 * 1024 * 1024;
+  var SIGN_VIDEO_MAX = 100 * 1024 * 1024;
+
+  function signStatus(message, state) {
+    var status = $("#signResultStatus");
+    status.textContent = message;
+    status.dataset.state = state || "idle";
+  }
+
+  function showSignError(message) {
+    signStatus(message, "error");
+    toast(message, "error");
+  }
+
+  function isAllowedFile(file, mediaType, extensions) {
+    var allowedTypes = mediaType === "image"
+      ? ["image/jpeg", "image/png", "image/webp"]
+      : ["video/mp4", "video/webm", "video/ogg"];
+    var typeMatches = allowedTypes.indexOf(file.type) !== -1;
+    var extensionMatches = extensions.some(function (extension) {
+      return file.name.toLowerCase().endsWith(extension);
+    });
+    return typeMatches || extensionMatches;
+  }
+
+  function releaseSignPreviewUrls() {
+    if (signMedia.imageUrl) URL.revokeObjectURL(signMedia.imageUrl);
+    if (signMedia.videoUrl) URL.revokeObjectURL(signMedia.videoUrl);
+    signMedia.imageUrl = null;
+    signMedia.videoUrl = null;
+  }
+
+  function clearSignSelection() {
+    var video = $("#signVideoPreview");
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+    releaseSignPreviewUrls();
+    $("#signImageFile").value = "";
+    $("#signVideoFile").value = "";
+    $("#signImagePreview").removeAttribute("src");
+    $("#signImagePreviewWrap").hidden = true;
+    $("#signVideoPreviewWrap").hidden = true;
+    $("#signImageMeta").textContent = "";
+    $("#signVideoMeta").textContent = "";
+    signMedia.source = "";
+  }
+
+  function setSignImage(file) {
+    if (!file.size) {
+      showSignError("The selected image is empty.");
+      return;
+    }
+    if (!isAllowedFile(file, "image", [".jpg", ".jpeg", ".png", ".webp"])) {
+      showSignError("Choose a JPG, PNG, or WEBP image.");
+      return;
+    }
+    if (file.size > SIGN_IMAGE_MAX) {
+      showSignError("Image must be 20 MB or smaller.");
+      return;
+    }
+    clearSignSelection();
+    stopSignCamera();
+    signMedia.imageUrl = URL.createObjectURL(file);
+    signMedia.source = "image";
+    $("#signImagePreview").src = signMedia.imageUrl;
+    $("#signImageMeta").textContent = file.name + " · " + formatBytes(file.size);
+    $("#signImagePreviewWrap").hidden = false;
+    signStatus("Image ready. AI model not connected.", "idle");
+  }
+
+  function setSignVideo(file) {
+    if (!file.size) {
+      showSignError("The selected video is empty.");
+      return;
+    }
+    if (!isAllowedFile(file, "video", [".mp4", ".webm", ".ogg", ".ogv"])) {
+      showSignError("Choose an MP4, WEBM, or OGG video.");
+      return;
+    }
+    if (file.size > SIGN_VIDEO_MAX) {
+      showSignError("Video must be 100 MB or smaller.");
+      return;
+    }
+    clearSignSelection();
+    stopSignCamera();
+    signMedia.videoUrl = URL.createObjectURL(file);
+    signMedia.source = "video";
+    $("#signVideoPreview").src = signMedia.videoUrl;
+    $("#signVideoPreview").load();
+    $("#signVideoMeta").textContent = file.name + " · " + formatBytes(file.size);
+    $("#signVideoPreviewWrap").hidden = false;
+    signStatus("Video ready. AI model not connected.", "idle");
+  }
+
+  function startSignCamera() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      showSignError("Live camera is not supported in this browser.");
+      return;
+    }
+    if (!window.isSecureContext) {
+      showSignError("Camera access requires HTTPS or localhost.");
+      return;
+    }
+    var requestId = ++signMedia.cameraRequest;
+    $("#signCameraStart").disabled = true;
+    signStatus("Waiting for camera permission…", "loading");
+    navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 1280 }, height: { ideal: 960 } }, audio: false })
+      .then(function (stream) {
+        if (requestId !== signMedia.cameraRequest || currentHash() !== "sign") {
+          stream.getTracks().forEach(function (track) { track.stop(); });
+          if (requestId === signMedia.cameraRequest) $("#signCameraStart").disabled = false;
+          return;
+        }
+        clearSignSelection();
+        signMedia.stream = stream;
+        signMedia.source = "camera";
+        $("#signCameraVideo").srcObject = stream;
+        $("#signCameraEmpty").hidden = true;
+        $("#signCameraStop").disabled = false;
+        signStatus("Live camera ready. AI model not connected.", "idle");
+      })
+      .catch(function (error) {
+        if (requestId !== signMedia.cameraRequest) return;
+        $("#signCameraStart").disabled = false;
+        var message = error.name === "NotAllowedError" || error.name === "PermissionDeniedError"
+          ? "Camera permission was denied. Allow camera access in your browser settings and try again."
+          : error.name === "NotFoundError"
+            ? "No camera was found on this device."
+            : "Could not start the camera. Check browser permissions and try again.";
+        showSignError(message);
+      });
+  }
+
+  function stopSignCamera() {
+    signMedia.cameraRequest += 1;
+    if (signMedia.stream) {
+      signMedia.stream.getTracks().forEach(function (track) { track.stop(); });
+      signMedia.stream = null;
+    }
+    var video = $("#signCameraVideo");
+    if (video) video.srcObject = null;
+    var empty = $("#signCameraEmpty");
+    if (empty) empty.hidden = false;
+    var start = $("#signCameraStart");
+    if (start) start.disabled = false;
+    var stop = $("#signCameraStop");
+    if (stop) stop.disabled = true;
+    if (signMedia.source === "camera") signMedia.source = "";
+  }
+
+  function recognizeSign() {
+    if (signMedia.recognitionTimer) clearTimeout(signMedia.recognitionTimer);
+    if (!signMedia.source) {
+      showSignError("Start the live camera or upload an image or video first.");
+      return;
+    }
+    var button = $("#signRecognize");
+    button.disabled = true;
+    signStatus("Checking recognition availability…", "loading");
+    signMedia.recognitionTimer = setTimeout(function () {
+      signMedia.recognitionTimer = null;
+      $("#signGestureResult").textContent = "—";
+      $("#signTranslationResult").textContent = "—";
+      $("#signConfidenceResult").textContent = "—";
+      signStatus("AI model not connected. No prediction was generated.", "error");
+      button.disabled = false;
+    }, 350);
+  }
+
+  function clearSignPage() {
+    if (signMedia.recognitionTimer) {
+      clearTimeout(signMedia.recognitionTimer);
+      signMedia.recognitionTimer = null;
+    }
+    stopSignCamera();
+    clearSignSelection();
+    $("#signGestureResult").textContent = "—";
+    $("#signTranslationResult").textContent = "—";
+    $("#signConfidenceResult").textContent = "—";
+    $("#signRecognize").disabled = false;
+    signStatus("AI model not connected", "idle");
+  }
+
+  function initSign() {
+    $("#signCameraStart").addEventListener("click", startSignCamera);
+    $("#signCameraStop").addEventListener("click", function () {
+      stopSignCamera();
+      signStatus("Camera stopped. AI model not connected.", "idle");
+    });
+    $("#signImageFile").addEventListener("change", function (event) {
+      setSignImage(event.target.files[0]);
+    });
+    $("#signVideoFile").addEventListener("change", function (event) {
+      setSignVideo(event.target.files[0]);
+    });
+    setupDropzone($("#signImageDrop"), setSignImage);
+    setupDropzone($("#signVideoDrop"), setSignVideo);
+    $("#signRecognize").addEventListener("click", recognizeSign);
+    $("#signClear").addEventListener("click", clearSignPage);
+    window.addEventListener("beforeunload", function () {
+      stopSignCamera();
+      releaseSignPreviewUrls();
+    });
+  }
+
   function setupDropzone(zone, onFile) {
     ["dragenter", "dragover"].forEach(function (ev) {
       zone.addEventListener(ev, function (e) { e.preventDefault(); zone.classList.add("dragover"); });
@@ -606,7 +816,7 @@
     });
   }
 
-  /* ---------- 10. Settings ---------- */
+  /* ---------- 11. Settings ---------- */
   function fillSettingsForm() {
     $("#backendUrl").value = settings.backendUrl;
     $("#epHealth").value = settings.endpoints.health;
@@ -657,7 +867,7 @@
     });
   }
 
-  /* ---------- 11. Init ---------- */
+  /* ---------- 12. Init ---------- */
   function startClock() {
     var el = $("#clock");
     function tick() {
@@ -671,6 +881,7 @@
     initText();
     initVoice();
     initFace();
+    initSign();
     initSettings();
     initDashboard();
     initNavigation();
