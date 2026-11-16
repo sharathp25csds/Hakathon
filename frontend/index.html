@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIGN BRIDGE AI — Bridging Communication Through Artificial Intelligence</title>
+  <meta name="description" content="SIGN BRIDGE AI frontend dashboard for text, voice and facial emotion analysis. Connects to a Python backend." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <!-- Fonts load from Google when online; system fonts are used as fallback offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="brand">
+        <img src="assets/logo.svg" alt="SIGN BRIDGE AI logo" class="brand-logo" width="40" height="40" />
+        <div>
+          <span class="brand-name">SIGN BRIDGE<span class="brand-accent">AI</span></span>
+          <span class="brand-tag">Bridging Communication Through Artificial Intelligence.</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#dashboard" class="nav-link" data-section="dashboard">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#text" class="nav-link" data-section="text">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4zm0 4h16v2H4zm0 4h10v2H4zm0 4h7v2H4z"/></svg>
+          <span>Text Emotion</span>
+        </a>
+        <a href="#voice" class="nav-link" data-section="voice">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V22h2v-3.08A7 7 0 0 0 19 12z"/></svg>
+          <span>Voice Emotion</span>
+        </a>
+        <a href="#face" class="nav-link" data-section="face">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-3.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM12 18a6 6 0 0 1-5.2-3h10.4A6 6 0 0 1 12 18z"/></svg>
+          <span>Facial Emotion</span>
+        </a>
+        <a href="#settings" class="nav-link" data-section="settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.4-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3.3h-4l-.4 2.7a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.4L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.4 2.5-1c.5.4 1.1.7 1.7 1l.4 2.7h4l.4-2.7c.6-.3 1.2-.6 1.7-1l2.5 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-pill" id="sidebarStatus" data-state="offline">
+          <span class="dot"></span>
+          <span class="status-text">Backend not connected</span>
+        </div>
+        <p class="version">SIGN BRIDGE AI · Frontend v1.0</p>
+      </div>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- ============ MAIN ============ -->
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open navigation">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+        </button>
+        <div>
+          <p class="eyebrow" id="pageEyebrow">Overview</p>
+          <h1 class="page-title" id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="topbar-right">
+          <span class="clock" id="clock">--:--</span>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <!-- ===== 1. DASHBOARD ===== -->
+        <section class="section" id="section-dashboard" data-title="Dashboard" data-eyebrow="Overview">
+          <div class="hero-card">
+            <div class="hero-copy">
+              <h2>Bridging Communication Through Artificial Intelligence.</h2>
+              <p>SIGN BRIDGE AI collects text, audio and images in the browser and sends them to your emotion-recognition backend. Results appear here once the backend is connected.</p>
+              <div class="btn-row">
+                <a href="#text" class="btn btn-primary">Analyze text</a>
+                <a href="#settings" class="btn btn-ghost">Connect backend</a>
+              </div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+              <div class="orb orb-1"></div>
+              <div class="orb orb-2"></div>
+              <div class="orb orb-3"></div>
+            </div>
+          </div>
+
+          <div class="grid stats-grid">
+            <div class="card stat">
+              <span class="stat-label">Text submissions</span>
+              <span class="stat-value" id="statText">0</span>
+              <span class="stat-note">this session</span>
+            </div>
+            <div class="card stat">
+              <span class="stat-label">Voice submissions</span>
+              <span class="stat-value" id="statVoice">0</span>
+              <span class="stat-note">this session</span>
+            </div>
+            <div class="card stat">
+              <span class="stat-label">Face submissions</span>
+              <span class="stat-value" id="statFace">0</span>
+              <span class="stat-note">this session</span>
+            </div>
+            <div class="card stat">
+              <span class="stat-label">Backend</span>
+              <span class="stat-value stat-value-sm" id="statBackend">Offline</span>
+              <span class="stat-note" id="statBackendUrl">No URL set</span>
+            </div>
+          </div>
+
+          <div class="grid two-col">
+            <div class="card">
+              <div class="card-head">
+                <h3>Emotion overview</h3>
+                <span class="badge">AI slot</span>
+              </div>
+              <div class="ai-slot" data-ai-slot="dashboard-overview">
+                <img src="assets/empty-state.svg" alt="" width="120" height="80" />
+                <p class="ai-slot-title">Awaiting AI integration</p>
+                <p class="ai-slot-text">Aggregated emotion trends from the backend will render here.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head">
+                <h3>System check</h3>
+                <button class="btn btn-small btn-ghost" id="rerunChecks">Re-run</button>
+              </div>
+              <ul class="checklist" id="systemChecks">
+                <li data-check="mic"><span class="check-dot"></span>Microphone access API<span class="check-val">—</span></li>
+                <li data-check="cam"><span class="check-dot"></span>Camera access API<span class="check-val">—</span></li>
+                <li data-check="recorder"><span class="check-dot"></span>Audio recording<span class="check-val">—</span></li>
+                <li data-check="storage"><span class="check-dot"></span>Local settings storage<span class="check-val">—</span></li>
+                <li data-check="backend"><span class="check-dot"></span>Backend reachable<span class="check-val">—</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>Session activity</h3>
+              <button class="btn btn-small btn-ghost" id="clearActivity">Clear</button>
+            </div>
+            <ul class="activity" id="activityList">
+              <li class="activity-empty">No activity yet. Submit text, audio or an image to see it logged here.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== 2. TEXT EMOTION ===== -->
+        <section class="section" id="section-text" data-title="Text Emotion" data-eyebrow="Module 01">
+          <div class="grid two-col">
+            <div class="card">
+              <div class="card-head">
+                <h3>Input text</h3>
+                <span class="muted-small"><span id="charCount">0</span> / 5000</span>
+              </div>
+              <form id="textForm" class="stack">
+                <textarea id="textInput" maxlength="5000" rows="10" placeholder="Type or paste a message, review, journal entry or chat transcript…"></textarea>
+                <div class="field-row">
+                  <label class="field">
+                    <span>Language</span>
+                    <select id="textLang">
+                      <option value="auto">Auto-detect</option>
+                      <option value="en">English</option>
+                      <option value="hi">Hindi</option>
+                      <option value="es">Spanish</option>
+                      <option value="fr">French</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Granularity</span>
+                    <select id="textMode">
+                      <option value="document">Whole text</option>
+                      <option value="sentence">Per sentence</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="btn-row">
+                  <button type="submit" class="btn btn-primary" id="textSubmit">Analyze emotion</button>
+                  <button type="button" class="btn btn-ghost" id="textClear">Clear</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="card">
+              <div class="card-head">
+                <h3>Analysis result</h3>
+                <span class="badge">AI slot</span>
+              </div>
+              <div class="ai-slot" id="textResult" data-ai-slot="text-result">
+                <img src="assets/empty-state.svg" alt="" width="120" height="80" />
+                <p class="ai-slot-title">Awaiting AI integration</p>
+                <p class="ai-slot-text">The backend's text-emotion response will be displayed here.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 3. VOICE EMOTION ===== -->
+        <section class="section" id="section-voice" data-title="Voice Emotion" data-eyebrow="Module 02">
+          <div class="grid two-col">
+            <div class="card">
+              <div class="card-head">
+                <h3>Record or upload audio</h3>
+                <span class="rec-indicator" id="recIndicator" hidden><span class="dot"></span>REC</span>
+              </div>
+              <div class="stack">
+                <canvas id="waveCanvas" class="wave" width="600" height="120" aria-label="Live microphone level"></canvas>
+                <div class="rec-timer" id="recTimer">00:00</div>
+                <div class="btn-row center">
+                  <button class="btn btn-primary" id="recStart">Start recording</button>
+                  <button class="btn btn-ghost" id="recStop" disabled>Stop</button>
+                </div>
+                <div class="divider"><span>or</span></div>
+                <label class="dropzone" id="audioDrop">
+                  <input type="file" id="audioFile" accept="audio/*" hidden />
+                  <strong>Choose an audio file</strong>
+                  <span>WAV, MP3, OGG or WEBM · drag & drop supported</span>
+                </label>
+                <div class="media-preview" id="audioPreviewWrap" hidden>
+                  <audio id="audioPreview" controls></audio>
+                  <p class="muted-small" id="audioMeta"></p>
+                </div>
+                <div class="btn-row">
+                  <button class="btn btn-primary" id="voiceSubmit" disabled>Analyze voice</button>
+                  <button class="btn btn-ghost" id="voiceReset" disabled>Discard</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head">
+                <h3>Analysis result</h3>
+                <span class="badge">AI slot</span>
+              </div>
+              <div class="ai-slot" id="voiceResult" data-ai-slot="voice-result">
+                <img src="assets/empty-state.svg" alt="" width="120" height="80" />
+                <p class="ai-slot-title">Awaiting AI integration</p>
+                <p class="ai-slot-text">The backend's speech-emotion response will be displayed here.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 4. FACIAL EMOTION ===== -->
+        <section class="section" id="section-face" data-title="Facial Emotion" data-eyebrow="Module 03">
+          <div class="grid two-col">
+            <div class="card">
+              <div class="card-head">
+                <h3>Camera or image</h3>
+                <div class="tabs" role="tablist">
+                  <button class="tab active" data-face-tab="camera" role="tab">Camera</button>
+                  <button class="tab" data-face-tab="upload" role="tab">Upload</button>
+                </div>
+              </div>
+
+              <div class="stack" data-face-panel="camera">
+                <div class="viewport">
+                  <video id="camVideo" autoplay playsinline muted></video>
+                  <div class="viewport-empty" id="camEmpty">
+                    <p>Camera is off</p>
+                    <span>Your video stays in the browser until you press Analyze.</span>
+                  </div>
+                </div>
+                <div class="btn-row">
+                  <button class="btn btn-ghost" id="camStart">Start camera</button>
+                  <button class="btn btn-ghost" id="camStop" disabled>Stop camera</button>
+                  <button class="btn btn-primary" id="camCapture" disabled>Capture frame</button>
+                </div>
+              </div>
+
+              <div class="stack" data-face-panel="upload" hidden>
+                <label class="dropzone" id="imageDrop">
+                  <input type="file" id="imageFile" accept="image/*" hidden />
+                  <strong>Choose a face image</strong>
+                  <span>JPG, PNG or WEBP · drag & drop supported</span>
+                </label>
+              </div>
+
+              <div class="media-preview" id="imagePreviewWrap" hidden>
+                <img id="imagePreview" alt="Selected image for analysis" />
+                <p class="muted-small" id="imageMeta"></p>
+              </div>
+              <canvas id="captureCanvas" hidden></canvas>
+
+              <div class="btn-row">
+                <button class="btn btn-primary" id="faceSubmit" disabled>Analyze face</button>
+                <button class="btn btn-ghost" id="faceReset" disabled>Discard</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head">
+                <h3>Analysis result</h3>
+                <span class="badge">AI slot</span>
+              </div>
+              <div class="ai-slot" id="faceResult" data-ai-slot="face-result">
+                <img src="assets/empty-state.svg" alt="" width="120" height="80" />
+                <p class="ai-slot-title">Awaiting AI integration</p>
+                <p class="ai-slot-text">The backend's facial-emotion response will be displayed here.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 5. SETTINGS ===== -->
+        <section class="section" id="section-settings" data-title="Settings" data-eyebrow="Configuration">
+          <div class="grid two-col">
+            <div class="card">
+              <div class="card-head"><h3>Backend connection</h3></div>
+              <form id="settingsForm" class="stack" novalidate>
+                <label class="field">
+                  <span>Backend base URL</span>
+                  <input type="url" id="backendUrl" placeholder="http://localhost:8000" />
+                  <small>Your teammates' Python server (e.g. FastAPI or Flask). Leave empty to stay offline.</small>
+                </label>
+                <label class="field">
+                  <span>Health check path</span>
+                  <input type="text" id="epHealth" placeholder="/health" />
+                </label>
+                <label class="field">
+                  <span>Text endpoint</span>
+                  <input type="text" id="epText" placeholder="/api/analyze/text" />
+                </label>
+                <label class="field">
+                  <span>Voice endpoint</span>
+                  <input type="text" id="epVoice" placeholder="/api/analyze/voice" />
+                </label>
+                <label class="field">
+                  <span>Face endpoint</span>
+                  <input type="text" id="epFace" placeholder="/api/analyze/face" />
+                </label>
+                <label class="field">
+                  <span>Request timeout (seconds)</span>
+                  <input type="number" id="timeoutSec" min="5" max="300" placeholder="30" />
+                </label>
+                <div class="btn-row">
+                  <button type="submit" class="btn btn-primary">Save settings</button>
+                  <button type="button" class="btn btn-ghost" id="testConnection">Test connection</button>
+                  <button type="button" class="btn btn-ghost" id="resetSettings">Reset</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="card">
+              <div class="card-head"><h3>Integration guide</h3></div>
+              <div class="guide">
+                <p>The frontend sends these requests. Each endpoint should return JSON.</p>
+                <div class="code-block">
+                  <span class="code-label">Text</span>
+<pre>POST {base}/api/analyze/text
+Content-Type: application/json
+{ "text": "...", "language": "auto", "mode": "document" }</pre>
+                </div>
+                <div class="code-block">
+                  <span class="code-label">Voice</span>
+<pre>POST {base}/api/analyze/voice
+Content-Type: multipart/form-data
+audio = &lt;file&gt;</pre>
+                </div>
+                <div class="code-block">
+                  <span class="code-label">Face</span>
+<pre>POST {base}/api/analyze/face
+Content-Type: multipart/form-data
+image = &lt;file&gt;</pre>
+                </div>
+                <p class="muted-small">Enable CORS on the Python server for the address you open this page from. Customize how results are drawn in <code>renderResult()</code> inside <code>script.js</code>.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
