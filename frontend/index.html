@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SIGN BRIDGE AI — Bridging Communication Through Artificial Intelligence</title>
-  <meta name="description" content="SIGN BRIDGE AI dashboard for text, voice, facial emotion, and sign language recognition." />
+  <title>SIGN BRIDGE AI — Assistive Indian Sign Language & Communication System</title>
+  <meta name="description" content="SignBridge AI assistive communication platform connecting Indian Sign Language (ISL) fingerspelling, speech synthesis, and facial expression context." />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <!-- Fonts load from Google when online; system fonts are used as fallback offline. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -20,30 +19,30 @@
         <img src="assets/logo.svg" alt="SIGN BRIDGE AI logo" class="brand-logo" width="40" height="40" />
         <div>
           <span class="brand-name">SIGN BRIDGE<span class="brand-accent">AI</span></span>
-          <span class="brand-tag">Bridging Communication Through Artificial Intelligence.</span>
+          <span class="brand-tag">Assistive Communication</span>
         </div>
       </div>
 
       <nav class="nav">
-        <a href="#dashboard" class="nav-link" data-section="dashboard">
+        <a href="#dashboard" class="nav-link active" data-section="dashboard">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"/></svg>
           <span>Dashboard</span>
         </a>
-        <a href="#text" class="nav-link" data-section="text">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4zm0 4h16v2H4zm0 4h10v2H4zm0 4h7v2H4z"/></svg>
-          <span>Text Emotion</span>
+        <a href="#sign" class="nav-link" data-section="sign">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 11.5V5.25a1.25 1.25 0 0 1 2.5 0V10h.75V3.75a1.25 1.25 0 0 1 2.5 0V10H14V5.25a1.25 1.25 0 0 1 2.5 0V11h.75V8.25a1.25 1.25 0 0 1 2.5 0v7.5A6.25 6.25 0 0 1 13.5 22h-2a6 6 0 0 1-5.2-3l-3.1-4.4a1.35 1.35 0 0 1 2.1-1.7l2.2 2.3z"/></svg>
+          <span>Sign Recognition</span>
         </a>
-        <a href="#voice" class="nav-link" data-section="voice">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V22h2v-3.08A7 7 0 0 0 19 12z"/></svg>
-          <span>Voice Emotion</span>
+        <a href="#tts" class="nav-link" data-section="tts">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+          <span>Text-to-Speech</span>
         </a>
         <a href="#face" class="nav-link" data-section="face">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-3.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM12 18a6 6 0 0 1-5.2-3h10.4A6 6 0 0 1 12 18z"/></svg>
-          <span>Facial Emotion</span>
+          <span>Facial Analysis</span>
         </a>
-        <a href="#sign" class="nav-link" data-section="sign">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 11.5V5.25a1.25 1.25 0 0 1 2.5 0V10h.75V3.75a1.25 1.25 0 0 1 2.5 0V10H14V5.25a1.25 1.25 0 0 1 2.5 0V11h.75V8.25a1.25 1.25 0 0 1 2.5 0v7.5A6.25 6.25 0 0 1 13.5 22h-2a6 6 0 0 1-5.2-3l-3.1-4.4a1.35 1.35 0 0 1 2.1-1.7l2.2 2.3z"/></svg>
-          <span>Sign Language</span>
+        <a href="#history" class="nav-link" data-section="history">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6a7 7 0 1 1 7 7 6.96 6.96 0 0 1-4.95-2.05l-1.42 1.42A8.96 8.96 0 0 0 13 21a9 9 0 1 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+          <span>History</span>
         </a>
         <a href="#settings" class="nav-link" data-section="settings">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.4-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3.3h-4l-.4 2.7a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.4L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.4 2.5-1c.5.4 1.1.7 1.7 1l.4 2.7h4l.4-2.7c.6-.3 1.2-.6 1.7-1l2.5 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg>
@@ -54,22 +53,22 @@
       <div class="sidebar-footer">
         <div class="status-pill" id="sidebarStatus" data-state="offline">
           <span class="dot"></span>
-          <span class="status-text">Backend not connected</span>
+          <span class="status-text">Checking backend...</span>
         </div>
-        <p class="version">SIGN BRIDGE AI · Frontend v1.0</p>
+        <p class="version">SignBridge AI · v2.0 (ISL)</p>
       </div>
     </aside>
 
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-    <!-- ============ MAIN ============ -->
+    <!-- ============ MAIN CONTENT ============ -->
     <div class="main">
       <header class="topbar">
         <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open navigation">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
         </button>
         <div>
-          <p class="eyebrow" id="pageEyebrow">Overview</p>
+          <p class="eyebrow" id="pageEyebrow">Assistive Communication</p>
           <h1 class="page-title" id="pageTitle">Dashboard</h1>
         </div>
         <div class="topbar-right">
@@ -79,15 +78,15 @@
 
       <main class="content">
 
-        <!-- ===== 1. DASHBOARD ===== -->
-        <section class="section" id="section-dashboard" data-title="Dashboard" data-eyebrow="Overview">
+        <!-- ==================== 1. DASHBOARD ==================== -->
+        <section class="section active" id="section-dashboard" data-title="Dashboard" data-eyebrow="Overview">
           <div class="hero-card">
             <div class="hero-copy">
-              <h2>Bridging Communication Through Artificial Intelligence.</h2>
-              <p>SIGN BRIDGE AI collects text, audio and images in the browser and sends them to your emotion-recognition backend. Results appear here once the backend is connected.</p>
+              <h2>Bridging Communication Through AI.</h2>
+              <p>SignBridge AI facilitates two-way dialogue between Indian Sign Language (ISL) users and hearing individuals through real-time hand recognition, continuous sentence building, and speech synthesis.</p>
               <div class="btn-row">
-                <a href="#text" class="btn btn-primary">Analyze text</a>
-                <a href="#settings" class="btn btn-ghost">Connect backend</a>
+                <a href="#sign" class="btn btn-primary">Start Sign Recognition</a>
+                <a href="#tts" class="btn btn-ghost">Open Text-to-Speech</a>
               </div>
             </div>
             <div class="hero-visual" aria-hidden="true">
@@ -99,387 +98,455 @@
 
           <div class="grid stats-grid">
             <div class="card stat">
-              <span class="stat-label">Text submissions</span>
-              <span class="stat-value" id="statText">0</span>
-              <span class="stat-note">this session</span>
+              <span class="stat-label">Recognized Signs</span>
+              <span class="stat-value" id="statSigns">0</span>
+              <span class="stat-note">letters detected</span>
             </div>
             <div class="card stat">
-              <span class="stat-label">Voice submissions</span>
-              <span class="stat-value" id="statVoice">0</span>
-              <span class="stat-note">this session</span>
+              <span class="stat-label">Words Spelled</span>
+              <span class="stat-value" id="statWords">0</span>
+              <span class="stat-note">in session</span>
             </div>
             <div class="card stat">
-              <span class="stat-label">Face submissions</span>
-              <span class="stat-value" id="statFace">0</span>
-              <span class="stat-note">this session</span>
+              <span class="stat-label">Messages Spoken</span>
+              <span class="stat-value" id="statSpoken">0</span>
+              <span class="stat-note">via speech engine</span>
             </div>
             <div class="card stat">
-              <span class="stat-label">Backend</span>
-              <span class="stat-value stat-value-sm" id="statBackend">Offline</span>
-              <span class="stat-note" id="statBackendUrl">No URL set</span>
+              <span class="stat-label">Backend AI</span>
+              <span class="stat-value stat-value-sm" id="statBackend">Checking</span>
+              <span class="stat-note" id="statBackendNote">Connecting...</span>
             </div>
           </div>
 
           <div class="grid two-col">
             <div class="card">
               <div class="card-head">
-                <h3>Emotion overview</h3>
-                <span class="badge">AI slot</span>
+                <h3>System Diagnostics</h3>
+                <button class="btn btn-small btn-ghost" id="rerunChecks">Re-check</button>
               </div>
-              <div class="ai-slot" data-ai-slot="dashboard-overview">
-                <img src="assets/empty-state.svg" alt="" width="120" height="80" />
-                <p class="ai-slot-title">Awaiting AI integration</p>
-                <p class="ai-slot-text">Aggregated emotion trends from the backend will render here.</p>
-              </div>
+              <ul class="checklist" id="systemChecks">
+                <li data-check="cam"><span class="check-dot"></span>Webcam Video API<span class="check-val">—</span></li>
+                <li data-check="speech"><span class="check-dot"></span>Browser Speech Synthesis (TTS)<span class="check-val">—</span></li>
+                <li data-check="backend"><span class="check-dot"></span>SignBridge API (/api/health)<span class="check-val">—</span></li>
+                <li data-check="mediapipe"><span class="check-dot"></span>Hand Landmark Detector<span class="check-val">—</span></li>
+                <li data-check="facial"><span class="check-dot"></span>Facial Expression Module<span class="check-val">—</span></li>
+              </ul>
             </div>
 
             <div class="card">
               <div class="card-head">
-                <h3>System check</h3>
-                <button class="btn btn-small btn-ghost" id="rerunChecks">Re-run</button>
+                <h3>Two-Way Communication Flow</h3>
+                <span class="badge">ISL Standard</span>
               </div>
-              <ul class="checklist" id="systemChecks">
-                <li data-check="mic"><span class="check-dot"></span>Microphone access API<span class="check-val">—</span></li>
-                <li data-check="cam"><span class="check-dot"></span>Camera access API<span class="check-val">—</span></li>
-                <li data-check="recorder"><span class="check-dot"></span>Audio recording<span class="check-val">—</span></li>
-                <li data-check="storage"><span class="check-dot"></span>Local settings storage<span class="check-val">—</span></li>
-                <li data-check="backend"><span class="check-dot"></span>Backend reachable<span class="check-val">—</span></li>
-              </ul>
+              <div class="stack" style="gap: 16px;">
+                <div style="padding: 12px 14px; background: var(--bg); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                  <strong style="color: var(--accent); font-size: 13px; text-transform: uppercase; letter-spacing: .08em;">Signer &rarr; Hearing</strong>
+                  <p style="font-size: 14px; margin-top: 4px; color: var(--text-muted);">Sign alphabet gestures into the camera. Letters assemble into words and sentences, then speak aloud.</p>
+                </div>
+                <div style="padding: 12px 14px; background: var(--bg); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                  <strong style="color: var(--accent-2); font-size: 13px; text-transform: uppercase; letter-spacing: .08em;">Hearing &rarr; Signer</strong>
+                  <p style="font-size: 14px; margin-top: 4px; color: var(--text-muted);">Type responses in Text-to-Speech to read and speak aloud clearly for two-way accessibility.</p>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="card">
             <div class="card-head">
-              <h3>Session activity</h3>
+              <h3>Live Activity Log</h3>
               <button class="btn btn-small btn-ghost" id="clearActivity">Clear</button>
             </div>
             <ul class="activity" id="activityList">
-              <li class="activity-empty">No activity yet. Submit text, audio or an image to see it logged here.</li>
+              <li class="activity-empty">No activity yet. Recognized signs and spoken messages will appear here.</li>
             </ul>
           </div>
         </section>
 
-        <!-- ===== 2. TEXT EMOTION ===== -->
-        <section class="section" id="section-text" data-title="Text Emotion" data-eyebrow="Module 01">
-          <div class="grid two-col">
-            <div class="card">
-              <div class="card-head">
-                <h3>Input text</h3>
-                <span class="muted-small"><span id="charCount">0</span> / 5000</span>
-              </div>
-              <form id="textForm" class="stack">
-                <textarea id="textInput" maxlength="5000" rows="10" placeholder="Type or paste a message, review, journal entry or chat transcript…"></textarea>
-                <div class="field-row">
-                  <label class="field">
-                    <span>Language</span>
-                    <select id="textLang">
-                      <option value="auto">Auto-detect</option>
-                      <option value="en">English</option>
-                      <option value="hi">Hindi</option>
-                      <option value="es">Spanish</option>
-                      <option value="fr">French</option>
-                    </select>
-                  </label>
-                  <label class="field">
-                    <span>Granularity</span>
-                    <select id="textMode">
-                      <option value="document">Whole text</option>
-                      <option value="sentence">Per sentence</option>
-                    </select>
-                  </label>
-                </div>
-                <div class="btn-row">
-                  <button type="submit" class="btn btn-primary" id="textSubmit">Analyze emotion</button>
-                  <button type="button" class="btn btn-ghost" id="textClear">Clear</button>
-                </div>
-              </form>
-            </div>
-
-            <div class="card">
-              <div class="card-head">
-                <h3>Analysis result</h3>
-                <span class="badge">AI slot</span>
-              </div>
-              <div class="ai-slot" id="textResult" data-ai-slot="text-result">
-                <img src="assets/empty-state.svg" alt="" width="120" height="80" />
-                <p class="ai-slot-title">Awaiting AI integration</p>
-                <p class="ai-slot-text">The backend's text-emotion response will be displayed here.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== 3. VOICE EMOTION ===== -->
-        <section class="section" id="section-voice" data-title="Voice Emotion" data-eyebrow="Module 02">
-          <div class="grid two-col">
-            <div class="card">
-              <div class="card-head">
-                <h3>Record or upload audio</h3>
-                <span class="rec-indicator" id="recIndicator" hidden><span class="dot"></span>REC</span>
-              </div>
-              <div class="stack">
-                <canvas id="waveCanvas" class="wave" width="600" height="120" aria-label="Live microphone level"></canvas>
-                <div class="rec-timer" id="recTimer">00:00</div>
-                <div class="btn-row center">
-                  <button class="btn btn-primary" id="recStart">Start recording</button>
-                  <button class="btn btn-ghost" id="recStop" disabled>Stop</button>
-                </div>
-                <div class="divider"><span>or</span></div>
-                <label class="dropzone" id="audioDrop">
-                  <input type="file" id="audioFile" accept="audio/*" hidden />
-                  <strong>Choose an audio file</strong>
-                  <span>WAV, MP3, OGG or WEBM · drag & drop supported</span>
-                </label>
-                <div class="media-preview" id="audioPreviewWrap" hidden>
-                  <audio id="audioPreview" controls></audio>
-                  <p class="muted-small" id="audioMeta"></p>
-                </div>
-                <div class="btn-row">
-                  <button class="btn btn-primary" id="voiceSubmit" disabled>Analyze voice</button>
-                  <button class="btn btn-ghost" id="voiceReset" disabled>Discard</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-head">
-                <h3>Analysis result</h3>
-                <span class="badge">AI slot</span>
-              </div>
-              <div class="ai-slot" id="voiceResult" data-ai-slot="voice-result">
-                <img src="assets/empty-state.svg" alt="" width="120" height="80" />
-                <p class="ai-slot-title">Awaiting AI integration</p>
-                <p class="ai-slot-text">The backend's speech-emotion response will be displayed here.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== 4. FACIAL EMOTION ===== -->
-        <section class="section" id="section-face" data-title="Facial Emotion" data-eyebrow="Module 03">
-          <div class="grid two-col">
-            <div class="card">
-              <div class="card-head">
-                <h3>Camera or image</h3>
-                <div class="tabs" role="tablist">
-                  <button class="tab active" data-face-tab="camera" role="tab">Camera</button>
-                  <button class="tab" data-face-tab="upload" role="tab">Upload</button>
-                </div>
-              </div>
-
-              <div class="stack" data-face-panel="camera">
-                <div class="viewport">
-                  <video id="camVideo" autoplay playsinline muted></video>
-                  <div class="viewport-empty" id="camEmpty">
-                    <p>Camera is off</p>
-                    <span>Your video stays in the browser until you press Analyze.</span>
-                  </div>
-                </div>
-                <div class="btn-row">
-                  <button class="btn btn-ghost" id="camStart">Start camera</button>
-                  <button class="btn btn-ghost" id="camStop" disabled>Stop camera</button>
-                  <button class="btn btn-primary" id="camCapture" disabled>Capture frame</button>
-                </div>
-              </div>
-
-              <div class="stack" data-face-panel="upload" hidden>
-                <label class="dropzone" id="imageDrop">
-                  <input type="file" id="imageFile" accept="image/*" hidden />
-                  <strong>Choose a face image</strong>
-                  <span>JPG, PNG or WEBP · drag & drop supported</span>
-                </label>
-              </div>
-
-              <div class="media-preview" id="imagePreviewWrap" hidden>
-                <img id="imagePreview" alt="Selected image for analysis" />
-                <p class="muted-small" id="imageMeta"></p>
-              </div>
-              <canvas id="captureCanvas" hidden></canvas>
-
-              <div class="btn-row">
-                <button class="btn btn-primary" id="faceSubmit" disabled>Analyze face</button>
-                <button class="btn btn-ghost" id="faceReset" disabled>Discard</button>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-head">
-                <h3>Analysis result</h3>
-                <span class="badge">AI slot</span>
-              </div>
-              <div class="ai-slot" id="faceResult" data-ai-slot="face-result">
-                <img src="assets/empty-state.svg" alt="" width="120" height="80" />
-                <p class="ai-slot-title">Awaiting AI integration</p>
-                <p class="ai-slot-text">The backend's facial-emotion response will be displayed here.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== SIGN LANGUAGE RECOGNITION ===== -->
-        <section class="section" id="section-sign" data-title="Sign Language Recognition" data-eyebrow="Accessibility">
+        <!-- ==================== 2. SIGN RECOGNITION ==================== -->
+        <section class="section" id="section-sign" data-title="Sign Language Recognition" data-eyebrow="Sign-to-Text">
           <div class="sign-intro">
-            <p>Bridging communication barriers through AI.</p>
-            <span>Use a live camera or choose an image or video to get started.</span>
+            <div class="sign-intro-header">
+              <div>
+                <p id="signLanguageTitle">Indian Sign Language (ISL) Fingerspelling Recognition</p>
+                <span id="signLanguageSubtitle">Present one-hand or two-hand alphabet signs to the camera to assemble words and sentences.</span>
+              </div>
+              <div class="lang-selector-group" role="radiogroup" aria-label="Sign Language Mode">
+                <button type="button" class="lang-toggle-btn active" id="btnLangISL" data-lang="ISL" title="Switch to Indian Sign Language">
+                  <span class="lang-flag">&#x1F1EE;&#x1F1F3;</span> ISL Mode
+                </button>
+                <button type="button" class="lang-toggle-btn" id="btnLangASL" data-lang="ASL" title="Switch to American Sign Language">
+                  <span class="lang-flag">&#x1F1FA;&#x1F1F8;</span> ASL Mode
+                </button>
+              </div>
+            </div>
           </div>
 
           <div class="grid sign-input-grid">
+            <!-- Camera Card -->
             <div class="card sign-media-card sign-camera-card">
               <div class="card-head">
                 <h3>Live Camera</h3>
-                <span class="badge">On device</span>
+                <label class="switch-label">
+                  <input type="checkbox" id="signContinuousToggle" checked />
+                  <span>Auto-detect loop</span>
+                </label>
               </div>
               <div class="viewport sign-viewport">
                 <video id="signCameraVideo" autoplay playsinline muted></video>
+                <canvas id="signCaptureCanvas" hidden></canvas>
                 <div class="viewport-empty" id="signCameraEmpty">
                   <p>Camera is off</p>
-                  <span>Your camera is only used for a live preview in this browser.</span>
+                  <span>Press "Start camera" to begin ISL fingerspelling recognition.</span>
                 </div>
               </div>
-              <div class="btn-row">
-                <button class="btn btn-ghost" id="signCameraStart" type="button">Start camera</button>
-                <button class="btn btn-ghost" id="signCameraStop" type="button" disabled>Stop camera</button>
+              <div class="btn-row" style="margin-top: 14px; justify-content: space-between;">
+                <div class="btn-row">
+                  <button class="btn btn-primary" id="signCameraStart" type="button">Start camera</button>
+                  <button class="btn btn-ghost" id="signCameraStop" type="button" disabled>Stop camera</button>
+                </div>
+                <button class="btn btn-ghost" id="signRecognize" type="button" disabled>Capture Frame</button>
               </div>
             </div>
 
+            <!-- Upload Card -->
             <div class="sign-upload-stack">
               <div class="card sign-media-card">
                 <div class="card-head">
-                  <h3>Upload Image</h3>
+                  <h3>Or Upload Image</h3>
                   <span class="badge">JPG · PNG · WEBP</span>
                 </div>
                 <label class="dropzone sign-dropzone" id="signImageDrop">
                   <input type="file" id="signImageFile" accept="image/jpeg,image/png,image/webp" hidden />
-                  <strong>Choose an image</strong>
-                  <span>Maximum file size: 20 MB</span>
+                  <strong>Choose a sign photo</strong>
+                  <span>Drop photo or click to browse</span>
                 </label>
                 <div class="media-preview sign-media-preview" id="signImagePreviewWrap" hidden>
-                  <img id="signImagePreview" alt="Preview of selected sign language image" />
+                  <img id="signImagePreview" alt="Sign preview" />
                   <p class="muted-small" id="signImageMeta"></p>
                 </div>
+                <div class="btn-row" style="margin-top: 10px;">
+                  <button class="btn btn-primary btn-small" id="signUploadAnalyze" disabled>Analyze Upload</button>
+                  <button class="btn btn-ghost btn-small" id="signUploadClear" disabled>Clear</button>
+                </div>
               </div>
 
-              <div class="card sign-media-card">
+              <!-- Real-time HUD Status Card -->
+              <div class="card sign-media-card" style="justify-content: center;">
                 <div class="card-head">
-                  <h3>Upload Video</h3>
-                  <span class="badge">MP4 · WEBM · OGG</span>
+                  <h3>Recognition Status</h3>
+                  <span class="badge" id="signStatusBadge">Idle</span>
                 </div>
-                <label class="dropzone sign-dropzone" id="signVideoDrop">
-                  <input type="file" id="signVideoFile" accept="video/mp4,video/webm,video/ogg" hidden />
-                  <strong>Choose a video</strong>
-                  <span>Maximum file size: 100 MB</span>
-                </label>
-                <div class="media-preview sign-media-preview" id="signVideoPreviewWrap" hidden>
-                  <video id="signVideoPreview" controls playsinline></video>
-                  <p class="muted-small" id="signVideoMeta"></p>
+                <p class="sign-result-status" id="signResultStatus" role="status">Camera not started. Ready to connect.</p>
+                <div style="margin-top: 10px; font-size: 12px; color: var(--text-dim);">
+                  Hands detected: <strong id="signNumHands" style="color: var(--text);">0</strong> · Handedness: <strong id="signHandedness" style="color: var(--text);">None</strong> · Latency: <strong id="signLatency" style="color: var(--text);">0 ms</strong>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="card sign-actions-card">
-            <div>
-              <h3>Ready to recognize?</h3>
-              <p class="muted-small">Recognition results are unavailable until an AI model is connected.</p>
-            </div>
-            <div class="btn-row">
-              <button class="btn btn-primary" id="signRecognize" type="button">Recognize Sign</button>
-              <button class="btn btn-ghost" id="signClear" type="button">Clear</button>
-            </div>
-          </div>
-
-          <div class="card sign-results-card" aria-labelledby="signResultsTitle">
+          <!-- Recognition Results & Sentence Builder -->
+          <div class="card sign-results-card">
             <div class="card-head">
               <div>
-                <h3 id="signResultsTitle">Results</h3>
-                <p class="muted-small">Predictions will appear here after model integration.</p>
+                <h3>Continuous Sentence Builder</h3>
+                <p class="muted-small">Recognized letters assemble into words. Insert space or speak when done.</p>
               </div>
-              <span class="badge">AI model not connected</span>
+              <div class="btn-row">
+                <button class="btn btn-ghost btn-small" id="signSpaceBtn" title="Complete current word">Space [ _ ]</button>
+                <button class="btn btn-ghost btn-small" id="signBackspaceBtn" title="Remove last letter">Backspace [&larr;]</button>
+                <button class="btn btn-ghost btn-small" id="signClearSentenceBtn" title="Clear full sentence">Clear</button>
+                <button class="btn btn-primary btn-small" id="signSpeakBtn" title="Speak sentence aloud via TTS">Speak &rarr;</button>
+              </div>
             </div>
-            <p class="sign-result-status" id="signResultStatus" role="status" aria-live="polite">AI model not connected</p>
+
+            <!-- Letter Display & Meter -->
             <div class="grid sign-result-grid">
-              <div class="sign-result-item">
-                <span class="stat-label">Recognized Gesture</span>
-                <strong id="signGestureResult">—</strong>
+              <div class="sign-result-item" style="align-items: center; justify-content: center; text-align: center;">
+                <span class="stat-label">Recognized Letter</span>
+                <span class="sign-letter-badge" id="signGestureResult">—</span>
               </div>
-              <div class="sign-result-item">
-                <span class="stat-label">Translated Text</span>
-                <strong id="signTranslationResult">—</strong>
-              </div>
-              <div class="sign-result-item">
+              <div class="sign-result-item" style="justify-content: center;">
                 <span class="stat-label">Confidence Score</span>
-                <strong id="signConfidenceResult">—</strong>
+                <strong id="signConfidenceResult" style="font-size: 24px; margin-top: 4px;">0%</strong>
+                <div class="confidence-bar">
+                  <div class="confidence-fill" id="signConfidenceBar"></div>
+                </div>
+              </div>
+              <div class="sign-result-item" style="justify-content: center;">
+                <span class="stat-label">Current Word</span>
+                <div style="margin-top: 6px;">
+                  <strong id="signCurrentWord" style="font-size: 22px; color: var(--accent);">—</strong>
+                </div>
               </div>
             </div>
+
+            <!-- Full Sentence Output Box -->
+            <div class="stack">
+              <span class="stat-label">Accumulated Sentence:</span>
+              <div class="sentence-box empty" id="signSentence">No words accumulated yet. Spell letters above to form words.</div>
+            </div>
+
+            <!-- Supported Signs Reference Accordion -->
             <div class="supported-signs">
-              <h4>Supported Signs</h4>
-              <p class="muted-small">The supported sign list will be shown when an AI model is connected.</p>
+              <div class="supported-signs-header" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+                <div>
+                  <h4 style="font-family: var(--font-display); font-size: 15px;" id="alphabetGridTitle">ISL Alphabet Recognition Status (A–Z)</h4>
+                  <p class="muted-small" id="alphabetGridSubtitle">Official ISLRTC fingerspelling recognition status</p>
+                </div>
+                <div class="count-badges-row">
+                  <span class="badge badge-count-total" id="badgeTotalLetters">26 Total</span>
+                  <span class="badge badge-count-experimental" id="badgeExperimentalLetters">26 Supported</span>
+                  <span class="badge badge-count-unsupported" id="badgeUnsupportedLetters">0 Unsupported</span>
+                  <span class="badge" id="supportedCountBadge" hidden>26 Letters</span>
+                </div>
+              </div>
+              <div class="alphabet-grid" id="alphabetGrid">
+                <!-- Populated dynamically via /api/supported-gestures -->
+              </div>
+              <p class="muted-small" id="alphabetDisclaimerText" style="margin-top: 10px; font-size: 11px; color: var(--text-dim); line-height: 1.4;"></p>
             </div>
           </div>
         </section>
 
-        <!-- ===== SETTINGS ===== -->
+        <!-- ==================== 3. TEXT-TO-SPEECH ==================== -->
+        <section class="section" id="section-tts" data-title="Text-to-Speech" data-eyebrow="Hearing-to-Deaf">
+          <div class="grid two-col">
+            <div class="card">
+              <div class="card-head">
+                <h3>Message Input</h3>
+                <span class="muted-small"><span id="ttsCharCount">0</span> characters</span>
+              </div>
+              <div class="stack">
+                <textarea id="ttsInput" rows="6" placeholder="Type a message here for hearing-to-deaf communication, or paste a sentence to speak aloud..."></textarea>
+                
+                <div>
+                  <span class="stat-label">Quick Phrases:</span>
+                  <div class="phrase-chips">
+                    <button type="button" class="phrase-chip" data-phrase="Hello, nice to meet you!">Hello, nice to meet you!</button>
+                    <button type="button" class="phrase-chip" data-phrase="Thank you very much.">Thank you very much.</button>
+                    <button type="button" class="phrase-chip" data-phrase="Could you please repeat that sign?">Could you please repeat?</button>
+                    <button type="button" class="phrase-chip" data-phrase="I understand, please continue.">I understand.</button>
+                  </div>
+                </div>
+
+                <div class="btn-row" style="margin-top: 10px;">
+                  <button type="button" class="btn btn-primary" id="ttsSpeakBtn">Speak Message</button>
+                  <button type="button" class="btn btn-ghost" id="ttsStopBtn">Stop</button>
+                  <button type="button" class="btn btn-ghost" id="ttsClearBtn">Clear</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head">
+                <h3>Speech Engine Controls</h3>
+                <span class="badge" id="ttsVoiceBadge">Native TTS</span>
+              </div>
+              <div class="stack">
+                <label class="field">
+                  <span>Voice</span>
+                  <select id="ttsVoiceSelect">
+                    <option value="">Default System Voice</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span>Speed / Rate (<span id="ttsRateVal">1.0x</span>)</span>
+                  <input type="range" id="ttsRate" min="0.5" max="2.0" step="0.1" value="1.0" />
+                </label>
+                <label class="field">
+                  <span>Pitch (<span id="ttsPitchVal">1.0</span>)</span>
+                  <input type="range" id="ttsPitch" min="0.5" max="2.0" step="0.1" value="1.0" />
+                </label>
+                <div style="padding: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-muted);">
+                  Speech is synthesized in real-time in the browser. Spoken sentences are automatically recorded in the <strong>Communication History</strong>.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== 4. FACIAL ANALYSIS ==================== -->
+        <section class="section" id="section-face" data-title="Facial Expression Analysis" data-eyebrow="Contextual Sentiment">
+          <div class="disclaimer-banner" style="margin-bottom: 20px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink: 0;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            <div>
+              <strong>Supplementary Context Notice:</strong> Facial expression analysis provides supplementary communication context only and is not definitive evidence of a person's emotions.
+            </div>
+          </div>
+
+          <div class="grid two-col">
+            <div class="card">
+              <div class="card-head">
+                <h3>Camera Preview</h3>
+                <label class="switch-label">
+                  <input type="checkbox" id="faceContinuousToggle" />
+                  <span>Continuous analysis</span>
+                </label>
+              </div>
+
+              <div class="viewport" id="faceViewport">
+                <video id="faceCamVideo" autoplay playsinline muted></video>
+                <canvas id="faceOverlayCanvas" class="viewport-overlay"></canvas>
+                <canvas id="faceCaptureCanvas" hidden></canvas>
+                <div class="viewport-empty" id="faceCamEmpty">
+                  <p>Camera is off</p>
+                  <span>Start camera to analyze facial expressions.</span>
+                </div>
+              </div>
+
+              <div class="btn-row" style="margin-top: 14px;">
+                <button class="btn btn-primary" id="faceCamStart">Start camera</button>
+                <button class="btn btn-ghost" id="faceCamStop" disabled>Stop camera</button>
+                <button class="btn btn-ghost" id="faceAnalyzeBtn" disabled>Analyze Frame</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h3>Detected Context</h3>
+                  <p class="muted-small">Multi-person detection & continuous tracking</p>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <span class="badge" id="facePeopleCountBadge">0 Faces</span>
+                  <span class="badge" id="faceModuleStatus">Ready</span>
+                </div>
+              </div>
+
+              <div class="stack" style="gap: 16px;">
+                <!-- Primary Face / Summary Result -->
+                <div class="sign-result-item" style="align-items: center; text-align: center; padding: 20px;">
+                  <span class="stat-label">Primary Face Expression</span>
+                  <strong id="faceExpressionResult" style="font-size: 32px; color: var(--accent-2); margin-top: 4px;">—</strong>
+                  <span id="faceStatusDetail" style="font-size: 13px; color: var(--text-dim); margin-top: 4px;">Awaiting camera analysis</span>
+                  <div style="width: 100%; margin-top: 10px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                      <span>Confidence</span>
+                      <strong id="faceConfidenceResult">0%</strong>
+                    </div>
+                    <div class="confidence-bar">
+                      <div class="confidence-fill" id="faceConfidenceBar"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Individual Tracked Persons Cards -->
+                <div class="sign-result-item" style="padding: 16px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <span class="stat-label" style="margin: 0;">Individual Tracked Persons</span>
+                    <span class="muted-small" id="faceTrackerNote">Persistent IDs</span>
+                  </div>
+                  <div id="faceMultiResultsContainer" class="face-multi-list">
+                    <div class="face-empty-note" id="faceEmptyNote" style="text-align: center; padding: 14px; color: var(--text-dim); font-size: 13px;">
+                      No faces currently detected. Point camera towards signers.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Supported Categories (All 9) -->
+                <div class="sign-result-item" style="padding: 16px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span class="stat-label" style="margin: 0;">Supported Categories</span>
+                    <span class="badge" style="font-size: 11px;">9 Categories</span>
+                  </div>
+                  <div id="faceSupportedChips" style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <span class="phrase-chip face-category-chip" data-category="neutral">neutral</span>
+                    <span class="phrase-chip face-category-chip" data-category="happy">happy</span>
+                    <span class="phrase-chip face-category-chip" data-category="surprised">surprised</span>
+                    <span class="phrase-chip face-category-chip" data-category="focused">focused</span>
+                    <span class="phrase-chip face-category-chip" data-category="sad">sad</span>
+                    <span class="phrase-chip face-category-chip" data-category="angry">angry</span>
+                    <span class="phrase-chip face-category-chip" data-category="fearful">fearful</span>
+                    <span class="phrase-chip face-category-chip" data-category="disgusted">disgusted</span>
+                    <span class="phrase-chip face-category-chip" data-category="confused">confused</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== 5. HISTORY ==================== -->
+        <section class="section" id="section-history" data-title="Communication History" data-eyebrow="Dialogue Record">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Session Dialogue History</h3>
+                <p class="muted-small">Chronological record of recognized signs and spoken messages.</p>
+              </div>
+              <div class="btn-row">
+                <button class="btn btn-small btn-ghost" id="filterHistoryAll">All</button>
+                <button class="btn btn-small btn-ghost" id="filterHistorySign">Signs Only</button>
+                <button class="btn btn-small btn-ghost" id="filterHistorySpeech">Spoken Only</button>
+                <button class="btn btn-small btn-ghost" id="clearHistoryBtn">Clear History</button>
+              </div>
+            </div>
+
+            <div class="stack" id="historyContainer" style="gap: 12px; margin-top: 10px;">
+              <div class="activity-empty" id="historyEmpty" style="padding: 30px; text-align: center; border: 1px dashed var(--border); border-radius: var(--radius-sm);">
+                No communication logged in this session. Start signing or speaking to record messages here.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== 6. SETTINGS ==================== -->
         <section class="section" id="section-settings" data-title="Settings" data-eyebrow="Configuration">
           <div class="grid two-col">
             <div class="card">
-              <div class="card-head"><h3>Backend connection</h3></div>
+              <div class="card-head"><h3>Backend Connection</h3></div>
               <form id="settingsForm" class="stack" novalidate>
                 <label class="field">
-                  <span>Backend base URL</span>
+                  <span>Backend Base URL</span>
                   <input type="url" id="backendUrl" placeholder="http://localhost:8000" />
-                  <small>Your teammates' Python server (e.g. FastAPI or Flask). Leave empty to stay offline.</small>
+                  <small>Leave blank to auto-detect the current host/port.</small>
                 </label>
                 <label class="field">
-                  <span>Health check path</span>
-                  <input type="text" id="epHealth" placeholder="/health" />
+                  <span>Health Check Path</span>
+                  <input type="text" id="epHealth" value="/api/health" />
                 </label>
                 <label class="field">
-                  <span>Text endpoint</span>
-                  <input type="text" id="epText" placeholder="/api/analyze/text" />
+                  <span>Sign Predict Path</span>
+                  <input type="text" id="epPredict" value="/api/predict" />
                 </label>
                 <label class="field">
-                  <span>Voice endpoint</span>
-                  <input type="text" id="epVoice" placeholder="/api/analyze/voice" />
+                  <span>Facial Analysis Path</span>
+                  <input type="text" id="epFace" value="/api/analyze/face" />
                 </label>
                 <label class="field">
-                  <span>Face endpoint</span>
-                  <input type="text" id="epFace" placeholder="/api/analyze/face" />
-                </label>
-                <label class="field">
-                  <span>Request timeout (seconds)</span>
-                  <input type="number" id="timeoutSec" min="5" max="300" placeholder="30" />
+                  <span>Request Timeout (seconds)</span>
+                  <input type="number" id="timeoutSec" min="3" max="120" value="15" />
                 </label>
                 <div class="btn-row">
-                  <button type="submit" class="btn btn-primary">Save settings</button>
-                  <button type="button" class="btn btn-ghost" id="testConnection">Test connection</button>
-                  <button type="button" class="btn btn-ghost" id="resetSettings">Reset</button>
+                  <button type="submit" class="btn btn-primary">Save Settings</button>
+                  <button type="button" class="btn btn-ghost" id="testConnection">Test Connection</button>
+                  <button type="button" class="btn btn-ghost" id="resetSettings">Reset Defaults</button>
                 </div>
               </form>
             </div>
 
             <div class="card">
-              <div class="card-head"><h3>Integration guide</h3></div>
+              <div class="card-head"><h3>ISL Compliance & Technical Architecture</h3></div>
               <div class="guide">
-                <p>The frontend sends these requests. Each endpoint should return JSON.</p>
+                <p>SignBridge AI v2 complies with the <strong>ISLRTC Indian Sign Language</strong> alphabet specification.</p>
                 <div class="code-block">
-                  <span class="code-label">Text</span>
-<pre>POST {base}/api/analyze/text
-Content-Type: application/json
-{ "text": "...", "language": "auto", "mode": "document" }</pre>
+                  <span class="code-label">Landmark Architecture</span>
+                  <pre>Multi-Hand Tracking: 2 Hands Max (162 Dims)
+Handedness: Dominant & Non-Dominant Support
+Feature Normalization: Wrist-Centered + Scale-Invariant</pre>
                 </div>
                 <div class="code-block">
-                  <span class="code-label">Voice</span>
-<pre>POST {base}/api/analyze/voice
-Content-Type: multipart/form-data
-audio = &lt;file&gt;</pre>
+                  <span class="code-label">Classification Engine</span>
+                  <pre>Rule Engine: Deterministic ISLRTC Geometry
+ML Engine: Signer-Independent ISL Classifier
+Temporal Engine: Sequential Landmark Trajectory</pre>
                 </div>
                 <div class="code-block">
-                  <span class="code-label">Face</span>
-<pre>POST {base}/api/analyze/face
-Content-Type: multipart/form-data
-image = &lt;file&gt;</pre>
+                  <span class="code-label">Sentence Builder</span>
+                  <pre>LetterBufferV2 &rarr; WordBuilderV2 &rarr; SentenceBuilderV2
+Auto-Spacing, Backspacing, and TTS Dispatch</pre>
                 </div>
-                <p class="muted-small">Enable CORS on the Python server for the address you open this page from. Customize how results are drawn in <code>renderResult()</code> inside <code>script.js</code>.</p>
               </div>
             </div>
           </div>

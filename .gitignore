@@ -1,0 +1,41 @@
+# Python Virtual Environments & Packages
+.venv/
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing & Type checking
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# IDE & Editor caches
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project Temporary & Model Caches
+*.log
+*.tmp
+*.mp4
+*.avi
+/tmp/
+ai/sign_recognition/data/*.csv.bak
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Local project backups
+ai/sign_recognition_v2_backup/
+frontend-local-backup-before-integration/
